@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ Bloom & Bite Craft }} - Company Profile</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(45, 25, 35, 0.75), rgba(45, 25, 35, 0.75)),
+                        url('https://images.unsplash.com/photo-1507290439931-a861b5a38200?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 140px 0;
+        }
+        .btn-rose {
+            background-color: #d65a78;
+            color: white;
+            border: none;
+        }
+        .btn-rose:hover {
+            background-color: #b84460;
+            color: white;
+        }
+        .text-rose {
+            color: #d65a78;
+        }
+        .card-img-top {
+            height: 250px;
+            object-fit: cover;
+        }
+        .card {
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-rose" href="#">🌸 {{ company.name }}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#tentang">Tentang Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#layanan">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#katalog">Katalog Foto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kontak">Pesan Custom</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">{{ company.name }}</h1>
+            <p class="lead mb-4">{{ company.tagline }}</p>
+            <a href="#katalog" class="btn btn-rose btn-lg px-4 me-2">Lihat Katalog Foto</a>
+            <a href="https://wa.me/{{ company.whatsapp }}?text=Halo%20{{ company.name }},%20saya%20mau%20tanya%20order%20bouquet" 
+               target="_blank" class="btn btn-outline-light btn-lg px-4">Chat WhatsApp</a>
+        </div>
+    </header>
+
+    <!-- Tentang Kami -->
+    <section id="tentang" class="py-5">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="fw-bold mb-3 text-rose">Tentang Kami</h2>
+                    <p class="text-muted fs-5">{{ company.about }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Layanan Kami -->
+    <section id="layanan" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5 text-rose">Kategori Pilihan</h2>
+            <div class="row g-4">
+                {% for service in services %}
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm text-center p-4">
+                        <div class="display-4 mb-3">{{ service.icon }}</div>
+                        <h5 class="fw-bold">{{ service.title }}</h5>
+                        <p class="text-muted mb-0">{{ service.desc }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Katalog Produk dengan Foto Asli -->
+    <section id="katalog" class="py-5">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-2 text-rose">Galeri & Katalog Produk</h2>
+            <p class="text-center text-muted mb-5">Pilih model favoritmu atau konsultasikan bentuk custom lainnya.</p>
+            
+            <div class="row g-4">
+                <!-- Produk 1 -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcQ8DEar9ybpdBDb-e8PtbRoRJcTGsN6zISC_CZDlMQYwCuEhPT5sQmNgFAPKzEMJbpCnlldXBBxYEqrY_Y" class="card-img-top" alt="Pastel Flower Bouquet">
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge bg-secondary align-self-start mb-2">Flower Bouquet</span>
+                            <h5 class="card-title fw-bold">Pastel Bloom Rose</h5>
+                            <p class="card-text text-muted flex-grow-1">Rangkaian bunga segar bernuansa pastel dengan balutan wrapping premium.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="fw-bold fs-5 text-rose">Rp 185.000</span>
+                                <a href="https://wa.me/{{ company.whatsapp }}?text=Halo,%20saya%20tertarik%20pesan%20Pastel%20Bloom%20Rose" 
+                                   target="_blank" class="btn btn-rose btn-sm">Pesan via WA</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produk 2 -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQDkNefn2K-1TFkWajNFPZpvzqyAn_Qql15vutEZBPAFWFl1Rigd_5exZAK8-O3g_huYgS0p1mgR_NU8BE" class="card-img-top" alt="Snack Chocolate Bouquet">
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge bg-secondary align-self-start mb-2">Snack & Cokelat</span>
+                            <h5 class="card-title fw-bold">Sweet Choco Box & Bouquet</h5>
+                            <p class="card-text text-muted flex-grow-1">Hadiah manis berisi pilihan cokelat favorit untuk ulang tahun & anniversary.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="fw-bold fs-5 text-rose">Rp 135.000</span>
+                                <a href="https://wa.me/{{ company.whatsapp }}?text=Halo,%20saya%20tertarik%20pesan%20Sweet%20Choco%20Bouquet" 
+                                   target="_blank" class="btn btn-rose btn-sm">Pesan via WA</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produk 3 -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTc0cZDA-vVI7NZ82RBbHgiPiV4b3ufng7ix3DllNzn7NkcON4vSv0awLlTUlUKzBL_jh8wvfD4SYqaqV4" class="card-img-top" alt="Money & Rose Bouquet">
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge bg-secondary align-self-start mb-2">Money & Gift</span>
+                            <h5 class="card-title fw-bold">Luxury Money & Rose</h5>
+                            <p class="card-text text-muted flex-grow-1">Kombinasi elegan lembaran uang kertas rapi dengan sentuhan bunga mawar asli.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="fw-bold fs-5 text-rose">Custom (Jasa Mulai 75rb)</span>
+                                <a href="https://wa.me/{{ company.whatsapp }}?text=Halo,%20saya%20tertarik%20pesan%20Luxury%20Money%20Bouquet" 
+                                   target="_blank" class="btn btn-rose btn-sm">Pesan via WA</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Konsultasi & Kontak -->
+    <section id="kontak" class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6">
+                    <h3 class="fw-bold text-rose mb-3">Request Custom Bouquet</h3>
+                    <p class="text-muted">Punya referensi foto sendiri atau mau custom budget? Kirim pesannya di sini.</p>
+                    
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                        {% for category, message in messages %}
+                          <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                      {% endif %}
+                    {% endwith %}
+
+                    <form method="POST" action="/">
+                        <div class="mb-3">
+                            <label class="form-label">Nama Anda</label>
+                            <input type="text" name="nama" class="form-control" required placeholder="Contoh: Sarah">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Jenis Bouquet</label>
+                            <select name="jenis" class="form-select">
+                                <option value="Bouquet Bunga">Bouquet Bunga</option>
+                                <option value="Bouquet Makanan / Snack">Bouquet Makanan / Snack</option>
+                                <option value="Bouquet Uang / Custom">Bouquet Uang / Custom Gift</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Detail Request & Budget</label>
+                            <textarea name="catatan" class="form-control" rows="3" required placeholder="Contoh: Mau bouquet snack nuansa warna biru, budget Rp 150.000"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-rose w-100">Kirim Request Konsultasi</button>
+                    </form>
+                </div>
+
+                <div class="col-md-6 d-flex flex-column justify-content-center">
+                    <h3 class="fw-bold text-rose mb-3">Informasi Studio</h3>
+                    <p class="mb-2"><strong>Alamat:</strong> {{ Jl.karyawan 2 ,Karang tengah, Ciledug,Kota Tangerang}}</p>
+                    <p class="mb-2"><strong>WhatsApp:</strong> +{{ +62 896-0288-3653}}</p>
+                    <p class="mb-2"><strong>Instagram:</strong> {{ @dianhnnaa}}</p>
+                    <p class="mb-4"><strong>Jam Operasional:</strong> Senin – Minggu (09.00 – 20.00 WIB)</p>
+                    <div>
+                        <a href="https://wa.me/+62 8960288{{ company.whatsapp }}" target="_blank" class="btn btn-success">
+                            💬 Hubungi Langsung via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p class="mb-0">&copy; 2026 {{ company.name }}. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
